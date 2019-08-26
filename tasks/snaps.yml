@@ -1,0 +1,31 @@
+---
+- name: Install BitWarden
+  snap:
+    name: bitwarden
+
+- name: Install DBeaver CE
+  snap:
+    name: dbeaver-ce
+
+- name: Install IntelliJ IDEA CE
+  snap:
+    name: intellij-idea-community
+    classic: yes
+
+- name: Install Skype
+  snap:
+    name: skype
+    classic: yes
+
+- name: Install Spotify
+  snap:
+    name: spotify
+
+- name: Install Visual Studio Code
+  snap:
+    name: code
+    classic: yes
+
+- name: Install VLC
+  snap:
+    name: vlc
