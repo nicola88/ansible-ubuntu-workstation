@@ -29,3 +29,7 @@
 - name: Install GIMP
   apt:
     name: "gimp"
+
+- name: Install FBReader
+  apt:
+    name: "fbreader"
