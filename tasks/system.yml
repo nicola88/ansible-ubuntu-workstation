@@ -1,0 +1,9 @@
+# Set hostname
+- hostname:
+    name: {{ hostname }}
+
+# Copy SSH config file
+- name: Copy SSH config file
+  copy: src=assets/ssh_config dest=/home/{{user}}/.ssh/config owner={{user}} group={{user}} mode=0400
+
+# TODO Disable Bluetooth on startup

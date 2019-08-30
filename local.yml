@@ -8,9 +8,12 @@
       apt:
         upgrade: safe
   vars:
+    hostname: "xps-13"
     user: "nicola"
   tasks:
     - include: tasks/users.yml
+    - include: tasks/system.yml
+    - include: tasks/repositories.yml
     # - include: tasks/cron.yml
     - include: tasks/packages.yml
     - include: tasks/snaps.yml
