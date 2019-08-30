@@ -1,10 +1,11 @@
+---
 - name: Install GNOME session
   apt:
     name: "gnome-session"
 
-- name: Install GNOME Builder
+- name: Install GNOME Sushi
   apt:
-    name: "gnome-builder"
+    name: "gnome-sushi"
 
 - name: Install GNOME Tweaks
   apt:

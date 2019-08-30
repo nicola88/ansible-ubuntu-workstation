@@ -1,35 +1,4 @@
-- name: Install system utilities
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - cryptsetup # Needed to access encrypted partitions
-    - gdebi
-    - synaptic
-    - gnome-sushi
-    - fslint
-
-- name: Install power utilities
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - lm-sensors
-    - powertop
-
-- name: Install development utilities
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - git
-    - openjdk-11-jdk
-    - meld
-  
-- name: Install GIMP
-  apt:
-    name: "gimp"
-
+---
 - name: Install FBReader
   apt:
     name: "fbreader"

@@ -1,0 +1,8 @@
+---
+- name: Install Spotify
+  snap:
+    name: spotify
+
+- name: Install VLC
+  snap:
+    name: vlc

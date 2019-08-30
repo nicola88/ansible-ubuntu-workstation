@@ -1,0 +1,35 @@
+---
+- name: Install git
+  apt:
+    name: git
+
+- name: Install OpenJDK 11
+  apt:
+    name: openjdk-11-jdk
+
+- name: Install Meld
+  apt:
+    name: "meld"
+
+- name: Install GNOME Builder
+  apt:
+    name: "gnome-builder"
+
+- name: Install Visual Studio Code
+  snap:
+    name: code
+    classic: yes
+
+- name: Install DBeaver CE
+  snap:
+    name: dbeaver-ce
+
+- name: Install IntelliJ IDEA CE
+  snap:
+    name: intellij-idea-community
+    classic: yes
+
+# - name: Install MicroK8s
+#   snap:
+#     name: microk8s
+#     classic: yes
