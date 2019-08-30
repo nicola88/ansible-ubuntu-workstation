@@ -33,3 +33,31 @@
 - name: Install FBReader
   apt:
     name: "fbreader"
+
+- name: Install LibreOffice Base & extras
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - libreoffice-base
+    - libreoffice-base-drivers
+    - libreoffice-dmaths
+    - libreoffice-java-common
+    - libreoffice-l10n-it
+    - libreoffice-lightproof-en
+    - libreoffice-mysql-connector
+    - libreoffice-nlpsolver
+    - libreoffice-report-builder
+    - libreoffice-report-builder-bin
+    - libreoffice-sdbc-firebird
+    - libreoffice-sdbc-hsqldb
+    - libreoffice-sdbc-postgresql
+    - libreoffice-templates
+    - mythes-it
+
+# - name: Install LaTex
+#   apt:
+#     name: "{{ packages }}"
+#   vars:
+#     packages:
+#     - ???
