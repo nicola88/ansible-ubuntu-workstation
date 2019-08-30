@@ -1,0 +1,15 @@
+- name: Install GNOME session
+  apt:
+    name: "gnome-session"
+
+- name: Install GNOME Builder
+  apt:
+    name: "gnome-builder"
+
+- name: Install GNOME Tweaks
+  apt:
+    name: "gnome-tweaks"
+
+- name: Install gedit plugins
+  apt:
+    name: "gedit-plugins"
