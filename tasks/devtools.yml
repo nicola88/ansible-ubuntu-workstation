@@ -1,30 +1,36 @@
----
 - name: Install git
+  tags: devtools
   apt:
     name: git
 
 - name: Install OpenJDK 11
+  tags: devtools
   apt:
     name: openjdk-11-jdk
 
 - name: Install Meld
+  tags: devtools
   apt:
     name: "meld"
 
 - name: Install GNOME Builder
+  tags: [devtools, gnome]
   apt:
     name: "gnome-builder"
 
 - name: Install Visual Studio Code
+  tags: devtools
   snap:
     name: code
     classic: yes
 
 - name: Install DBeaver CE
+  tags: devtools
   snap:
     name: dbeaver-ce
 
 - name: Install IntelliJ IDEA CE
+  tags: devtools
   snap:
     name: intellij-idea-community
     classic: yes

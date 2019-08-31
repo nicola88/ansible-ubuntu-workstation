@@ -13,15 +13,11 @@
     distribution: "bionic"
   tasks:
     - include: tasks/users.yml
+    - include: tasks/repositories.yml
     - include: tasks/system.yml
     - include: tasks/gnome.yml
-    - include: tasks/repositories.yml
-    # - include: tasks/cron.yml
-    - include: tasks/apps/audio-video.yml
-    - include: tasks/apps/developer-tools.yml
-    - include: tasks/apps/graphics.yml
-    - include: tasks/apps/internet.yml
-    - include: tasks/apps/productivity.yml
-    - include: tasks/apps/utilities.yml
+    - include: tasks/applications.yml
+    - include: tasks/devtools.yml
     - include: tasks/docker.yml
+    # - include: tasks/postgresql.yml
     # - include: tasks/minikube.yml

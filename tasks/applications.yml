@@ -1,0 +1,108 @@
+---
+- name: Install Brave
+  tags: browser
+  block:
+    - name: Add Brave GPG key
+      apt_key:
+        url: https://brave-browser-apt-release.s3.brave.com/brave-core.asc
+        keyring: /etc/apt/trusted.gpg.d/brave-browser-release.gpg
+        state: present
+    - name: Add Brave repository
+      apt_repository:
+      repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ {{ distribution }} main
+      state: present
+   - name: Update repositories
+      apt: update_cache=yes
+    - name: Install Brave
+      apt:
+        name: "brave-browser"
+
+- name: Install Chromium
+  tags: browser
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - chromium-browser
+    - chromium-browser-l10n
+    - chromium-codecs-ffmpeg-extra
+
+- name: Install Skype
+  tags: chat
+  snap:
+    name: skype
+    classic: yes
+
+- name: Install GIMP
+  tags: graphics
+  apt:
+    name: gimp
+
+- name: Install Spotify
+  tags: multimedia
+  snap:
+    name: spotify
+
+- name: Install VLC
+  tags: multimedia
+  snap:
+    name: vlc
+
+- name: Install FBReader
+  tags: productivity
+  apt:
+    name: "fbreader"
+
+- name: Install LibreOffice Base & extras
+  tags: productivity
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - libreoffice-base
+    - libreoffice-base-drivers
+    - libreoffice-dmaths
+    - libreoffice-java-common
+    - libreoffice-l10n-it
+    - libreoffice-lightproof-en
+    - libreoffice-mysql-connector
+    - libreoffice-nlpsolver
+    - libreoffice-report-builder
+    - libreoffice-report-builder-bin
+    - libreoffice-sdbc-firebird
+    - libreoffice-sdbc-hsqldb
+    - libreoffice-sdbc-postgresql
+    - libreoffice-templates
+    - mythes-it
+
+# - name: Install LaTex
+#   apt:
+#     name: "{{ packages }}"
+#   vars:
+#     packages:
+#     - ???
+
+- name: Install BitWarden
+  tags: security
+  snap:
+    name: bitwarden
+
+- name: Install system utilities
+  tags: system
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - cryptsetup # Needed to access encrypted partitions
+    - gdebi
+    - synaptic
+    - fslint
+
+- name: Install power utilities
+  tags: system
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - lm-sensors
+    - powertop
