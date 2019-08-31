@@ -1,9 +1,22 @@
-# Set hostname
-- hostname:
-    name: {{ hostname }}
+---
+- name: Update hostname
+    hostname:
+    name: "{{ hostname }}"
 
-# Copy SSH config file
+- name: Update /etc/hosts
+    lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.1\.1'
+    line: '127.0.1.1 {{ hostname }}'
+    state: present
+
 - name: Copy SSH config file
   copy: src=assets/ssh_config dest=/home/{{user}}/.ssh/config owner={{user}} group={{user}} mode=0400
+
+# TODO Copy private/public SSH keys from a safe place (Ansible Vault / Ansible lookup module)
+
+- name: Install Ubuntu restricted extras
+  apt:
+    name: "ubuntu-restricted-extras"
 
 # TODO Disable Bluetooth on startup

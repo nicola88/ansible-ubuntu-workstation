@@ -11,6 +11,6 @@
   apt:
     name: "gnome-tweaks"
 
-- name: Install gedit plugins
+- name: Install GNOME gedit plugins
   apt:
     name: "gedit-plugins"

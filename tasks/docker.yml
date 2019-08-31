@@ -1,7 +1,7 @@
 ---
 # https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-18-04
 
-- name: Install requirements
+- name: Install Docker requirements
   apt:
     name: "{{ packages }}"
   vars:
@@ -11,18 +11,19 @@
     - curl
     - gnupg-agent
     - software-properties-common
+    - python-pip
 
-- name: Add Docker GPG apt Key
+- name: Add Docker APT key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
 - name: Add Docker repository
   apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ distribution }} stable"
     state: present
 
-- name: Update repositories
+- name: Update APT repositories
   apt: update_cache=yes
 
 - name: Install Docker CE
@@ -42,11 +43,11 @@
 - name: Add user to group 'docker'
   user:
     name: "{{ user }}"
-    group: docker
+    groups: docker
     append: yes
 
 - name: Apply user changes
-  meta: reset_connection
+  meta: flush_handlers
 
 - name: Install Docker Module for Python
   pip:
