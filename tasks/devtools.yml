@@ -1,36 +1,55 @@
 - name: Install git
-  tags: devtools
+  tags: dev-tools
   apt:
     name: git
 
+- name: Install sbt
+  tags: [dev-tools, scala]
+  block:
+  - name: Add sbt APT repository
+    apt_repository:
+      repo: deb https://dl.bintray.com/sbt/debian /
+      state: present
+      filename: sbt
+  - name: Add sbt APT key
+    apt_key:
+      keyserver: hkp://keyserver.ubuntu.com:80
+      id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+      state: present
+  - name: Update APT repositories
+    apt: update_cache=yes
+  - name: Install sbt
+    apt:
+      name: "sbt"
+
 - name: Install OpenJDK 11
-  tags: devtools
+  tags: dev-tools
   apt:
     name: openjdk-11-jdk
 
 - name: Install Meld
-  tags: devtools
+  tags: dev-tools
   apt:
     name: "meld"
 
 - name: Install GNOME Builder
-  tags: [devtools, gnome]
+  tags: [dev-tools, gnome]
   apt:
     name: "gnome-builder"
 
 - name: Install Visual Studio Code
-  tags: devtools
+  tags: dev-tools
   snap:
     name: code
     classic: yes
 
 - name: Install DBeaver CE
-  tags: devtools
+  tags: dev-tools
   snap:
     name: dbeaver-ce
 
 - name: Install IntelliJ IDEA CE
-  tags: devtools
+  tags: dev-tools
   snap:
     name: intellij-idea-community
     classic: yes
