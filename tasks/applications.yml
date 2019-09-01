@@ -86,23 +86,3 @@
   tags: security
   snap:
     name: bitwarden
-
-- name: Install system utilities
-  tags: system
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - cryptsetup # Needed to access encrypted partitions
-    - gdebi
-    - synaptic
-    - fslint
-
-- name: Install power utilities
-  tags: system
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-    - lm-sensors
-    - powertop

@@ -1,10 +1,10 @@
 ---
 - name: Update hostname
-    hostname:
+  hostname:
     name: "{{ hostname }}"
 
 - name: Update /etc/hosts
-    lineinfile:
+  lineinfile:
     dest: /etc/hosts
     regexp: '^127\.0\.1\.1'
     line: '127.0.1.1 {{ hostname }}'
@@ -15,7 +15,28 @@
 
 # TODO Copy private/public SSH keys from a safe place (Ansible Vault / Ansible lookup module)
 
+- name: Install system utilities
+  tags: system
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - cryptsetup # Needed to access encrypted partitions
+    - gdebi
+    - synaptic
+    - fslint
+
+- name: Install power utilities
+  tags: system
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - lm-sensors
+    - powertop
+
 - name: Install Ubuntu restricted extras
+  tags: system
   apt:
     name: "ubuntu-restricted-extras"
 

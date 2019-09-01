@@ -1,10 +1,10 @@
 - name: Install git
-  tags: dev-tools
+  tags: development
   apt:
     name: git
 
 - name: Install sbt
-  tags: [dev-tools, scala]
+  tags: [development, scala]
   block:
   - name: Add sbt APT repository
     apt_repository:
@@ -23,33 +23,33 @@
       name: "sbt"
 
 - name: Install OpenJDK 11
-  tags: dev-tools
+  tags: development
   apt:
     name: openjdk-11-jdk
 
 - name: Install Meld
-  tags: dev-tools
+  tags: development
   apt:
     name: "meld"
 
 - name: Install GNOME Builder
-  tags: [dev-tools, gnome]
+  tags: [development, editor, gnome]
   apt:
     name: "gnome-builder"
 
 - name: Install Visual Studio Code
-  tags: dev-tools
+  tags: [development, editor]
   snap:
     name: code
     classic: yes
 
 - name: Install DBeaver CE
-  tags: dev-tools
+  tags: [database, development, editor]
   snap:
     name: dbeaver-ce
 
 - name: Install IntelliJ IDEA CE
-  tags: dev-tools
+  tags: [development, editor]
   snap:
     name: intellij-idea-community
     classic: yes
