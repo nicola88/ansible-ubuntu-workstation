@@ -3,5 +3,12 @@
     name: ansible
     uid: 900
 
-- name: Copy sudoers_ansible
-  copy: src=assets/sudoers_ansible dest=/etc/sudoers.d/ansible owner=root group=root mode=0440
+- name: Add ansible user to sudoers
+  lineinfile:
+    path: /etc/sudoers.d/ansible
+    create: yes
+    owner: root
+    group: root
+    line: "ansible ALL=(ALL) NOPASSWD: ALL"
+    mode: 0440
+    state: present
