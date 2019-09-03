@@ -53,8 +53,3 @@
   snap:
     name: intellij-idea-community
     classic: yes
-
-# - name: Install MicroK8s
-#   snap:
-#     name: microk8s
-#     classic: yes

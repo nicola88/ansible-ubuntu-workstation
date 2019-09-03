@@ -1,0 +1,122 @@
+- name: Install VirtualBox 6
+  tags: virtualization
+  block:
+  - name: Add VirtualBox APT repository
+    apt_repository:
+      repo: "deb https://download.virtualbox.org/virtualbox/debian {{ distribution }} contrib"
+      state: present
+      filename: virtualbox
+  
+  - name: Add VirtualBox APT key
+    apt_key:
+      url: "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+      state: present
+  
+  - name: Update APT repositories
+    apt:
+      update_cache: yes
+  
+  - name: Install VirtualBox 6
+    apt:
+      name: "virtualbox-6.0"
+
+
+# https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-18-04
+- name: Install Docker
+  tags: virtualization
+  block:
+    - name: Install Docker requirements
+      apt:
+          name: "{{ packages }}"
+      vars:
+          packages:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+          - python-pip
+
+    - name: Add Docker APT key
+      apt_key:
+          url: https://download.docker.com/linux/ubuntu/gpg
+          state: present
+
+    - name: Add Docker APT repository
+      apt_repository:
+          repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ distribution }} stable"
+          state: present
+
+    - name: Update APT repositories
+      apt: 
+        update_cache: yes
+
+    - name: Install Docker CE
+      apt:
+          name: "{{ packages }}"
+      vars:
+          packages:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+
+    - name: Create group 'docker'
+      group:
+          name: docker
+          state: present
+
+    - name: Add user to group 'docker'
+      user:
+          name: "{{ ansible_user_id }}"
+          groups: docker
+          append: yes
+
+    - name: Apply user changes
+      meta: flush_handlers
+
+    - name: Install Docker Module for Python
+      pip:
+          name: docker
+
+    # Pull image specified by variable default_image from the Docker Hub
+    - name: Pull default Docker image
+      become: yes
+      become_user: "{{ ansible_user_id }}"
+      docker_image:
+          name: hello-world
+          source: pull
+
+
+# https://minikube.sigs.k8s.io/docs/start/linux/
+- name: Install minikube
+  tags: [virtualization]
+  block:
+    - name: Check virtualization support
+      command: "egrep -q 'vmx|svm' /proc/cpuinfo && echo yes || echo no"
+      register: "virt-supported"
+      failed_when: "{{ virt-supported.stdout }} == no"
+    
+    - name: Download .deb file
+      get_url:
+        url: "https://storage.googleapis.com/minikube/releases/latest/minikube_1.3.1.deb"
+        dest: "{{ ansible_user_dir }}/minikube.deb"
+    
+    - name: Install .deb package
+      apt:
+        deb: "{{ ansible_user_dir }}/minikube.deb"
+  
+  rescue:
+    - debug:
+        msg: "minikube installation failed since virtualization support is not available or enabled"
+  
+  always:
+    - name: Delete .deb file
+      file:
+        state: absent
+        path: "{{ ansible_user_dir }}/minikube.deb"
+
+
+# - name: Install MicroK8s
+#   snap:
+#     name: microk8s
+#     classic: yes
