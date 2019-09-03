@@ -17,6 +17,5 @@
     - include: tasks/gnome.yml
     - include: tasks/applications.yml
     - include: tasks/development.yml
-    - include: tasks/docker.yml
-    # - include: tasks/postgresql.yml
-    # - include: tasks/minikube.yml
+    - include: tasks/virtualization.yml
+    - include: tasks/postgresql.yml
