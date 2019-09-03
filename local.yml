@@ -9,7 +9,6 @@
         upgrade: safe
   vars:
     hostname: "xps-13"
-    user: "nicola"
     distribution: "bionic"
   tasks:
     - include: tasks/users.yml

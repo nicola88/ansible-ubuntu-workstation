@@ -11,7 +11,7 @@
       apt_repository:
       repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ {{ distribution }} main
       state: present
-   - name: Update repositories
+    - name: Update repositories
       apt: update_cache=yes
     - name: Install Brave
       apt:
