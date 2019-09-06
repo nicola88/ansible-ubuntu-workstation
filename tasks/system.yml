@@ -11,7 +11,14 @@
     state: present
 
 - name: Copy SSH config file
-  copy: src=assets/ssh_config dest={{ ansible_user_dir }}/.ssh/config owner={{ ansible_user_id }} group={{ ansible_user_id }} mode=0400
+  become: yes
+  become_user: "{{ user }}"
+  copy: 
+    src: assets/ssh_config
+    dest: "{{ user }}/.ssh/config"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0400
 
 # TODO Copy private/public SSH keys from a safe place (Ansible Vault / Ansible lookup module)
 
