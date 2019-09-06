@@ -1,6 +1,7 @@
 - name: Create ansible user
   user:
     name: ansible
+    create_home: no
     uid: 900
 
 - name: Add ansible user to sudoers
