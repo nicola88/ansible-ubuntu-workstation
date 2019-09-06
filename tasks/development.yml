@@ -19,16 +19,16 @@
 - name: Install sbt
   tags: [development, scala]
   block:
-  - name: Add sbt APT repository
-    apt_repository:
-      repo: deb https://dl.bintray.com/sbt/debian /
-      state: present
-      filename: sbt
   - name: Add sbt APT key
     apt_key:
       keyserver: hkp://keyserver.ubuntu.com:80
       id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
       state: present
+  - name: Add sbt APT repository
+    apt_repository:
+      repo: deb https://dl.bintray.com/sbt/debian /
+      state: present
+      filename: sbt
   - name: Update APT repositories
     apt: update_cache=yes
   - name: Install sbt
