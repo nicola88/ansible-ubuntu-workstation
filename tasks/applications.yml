@@ -9,8 +9,8 @@
         state: present
     - name: Add Brave repository
       apt_repository:
-      repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ {{ ansible_distribution_release }} main
-      state: present
+        repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ {{ ansible_distribution_release }} main
+        state: present
     - name: Update repositories
       apt: update_cache=yes
     - name: Install Brave
