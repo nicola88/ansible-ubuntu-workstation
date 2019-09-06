@@ -15,7 +15,7 @@
   become_user: "{{ user }}"
   copy: 
     src: assets/ssh_config
-    dest: "{{ user }}/.ssh/config"
+    dest: "/home/{{ user }}/.ssh/config"
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0400
