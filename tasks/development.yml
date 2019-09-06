@@ -33,17 +33,17 @@
     apt: update_cache=yes
   - name: Install sbt
     apt:
-      name: "sbt"
+      name: sbt
 
 - name: Install Meld
   tags: development
   apt:
-    name: "meld"
+    name: meld
 
 - name: Install GNOME Builder
   tags: [development, editor, gnome]
   apt:
-    name: "gnome-builder"
+    name: gnome-builder
 
 - name: Install Visual Studio Code
   tags: [development, editor]
@@ -70,7 +70,13 @@
       name: dbeaver-ce
 
 - name: Install IntelliJ IDEA CE
-  tags: [development, editor]
+  tags: [development, editor, java, scala]
   snap:
     name: intellij-idea-community
+    classic: yes
+
+- name: Install PyCharm CE
+  tags: [development, editor, python]
+  snap:
+    name: pycharm-community
     classic: yes
