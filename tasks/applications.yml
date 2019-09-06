@@ -2,19 +2,19 @@
 - name: Install Brave
   tags: browser
   block:
-    - name: Add Brave GPG key
+    - name: Brave> Add APT key
       apt_key:
         url: https://brave-browser-apt-release.s3.brave.com/brave-core.asc
         keyring: /etc/apt/trusted.gpg.d/brave-browser-release.gpg
         state: present
-    - name: Add Brave repository
+    - name: Brave> Add APT repository
       apt_repository:
         repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ {{ ansible_distribution_release }} main
         state: present
         filename: brave-browser-apt-release
-    - name: Update repositories
+    - name: Brave> Update repositories
       apt: update_cache=yes
-    - name: Install Brave
+    - name: Brave> Install
       apt:
         name: "brave-browser"
 

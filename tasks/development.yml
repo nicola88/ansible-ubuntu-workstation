@@ -19,19 +19,19 @@
 - name: Install sbt
   tags: [development, scala]
   block:
-  - name: Add sbt APT key
+  - name: sbt> Add APT key
     apt_key:
       keyserver: hkp://keyserver.ubuntu.com:80
       id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
       state: present
-  - name: Add sbt APT repository
+  - name: sbt> Add APT repository
     apt_repository:
       repo: deb https://dl.bintray.com/sbt/debian /
       state: present
       filename: sbt
-  - name: Update APT repositories
+  - name: sbt> Update repositories
     apt: update_cache=yes
-  - name: Install sbt
+  - name: sbt> Install
     apt:
       name: sbt
 
@@ -54,18 +54,18 @@
 - name: Install DBeaver CE
   tags: [database, development, editor]
   block:
-  - name: Add DBeaver APT key
+  - name: DBeaver> Add APT key
     apt_key:
       url: https://dbeaver.io/debs/dbeaver.gpg.key
       state: present
-  - name: Add DBeaver APT repository
+  - name: DBeaver> Add APT repository
     apt_repository:
       repo: deb https://dbeaver.io/debs/dbeaver-ce /
       state: present
       filename: dbeaver
-  - name: Update APT repositories
+  - name: DBeaver> Update repositories
     apt: update_cache=yes
-  - name: Install DBeaver CE
+  - name: DBeaver> Install
     apt:
       name: dbeaver-ce
 
