@@ -53,8 +53,21 @@
 
 - name: Install DBeaver CE
   tags: [database, development, editor]
-  snap:
-    name: dbeaver-ce
+  block:
+  - name: Add DBeaver APT key
+    apt_key:
+      url: https://dbeaver.io/debs/dbeaver.gpg.key
+      state: present
+  - name: Add DBeaver APT repository
+    apt_repository:
+      repo: deb https://dbeaver.io/debs/dbeaver-ce /
+      state: present
+      filename: dbeaver
+  - name: Update APT repositories
+    apt: update_cache=yes
+  - name: Install DBeaver CE
+    apt:
+      name: dbeaver-ce
 
 - name: Install IntelliJ IDEA CE
   tags: [development, editor]
