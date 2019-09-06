@@ -62,18 +62,6 @@
           name: "{{ user }}"
           groups: docker
           append: yes
-    - name: Docker> Apply user changes
-      meta: flush_handlers
-    - name: Docker> Install Python Module
-      pip:
-          name: docker
-    # Pull image specified by variable default_image from the Docker Hub
-    - name: Docker> Pull hello-world image
-      become: yes
-      become_user: "{{ ansible_user_id }}"
-      docker_image:
-          name: hello-world
-          source: pull
 
 
 # https://minikube.sigs.k8s.io/docs/start/linux/
@@ -81,12 +69,12 @@
   tags: [virtualization]
   block:
     - name: minikube> Check virtualization support
-      command: "egrep -q 'vmx|svm' /proc/cpuinfo && echo yes || echo no"
-      register: "virt-supported"
-      failed_when: "{{ virt-supported.stdout }} == no"
+      shell: "egrep -q 'vmx|svm' /proc/cpuinfo && echo yes || echo no"
+      register: "virt"
+      failed_when: "virt.stdout == 'no'"
     - name: minikube> Download package
       get_url:
-        url: "https://storage.googleapis.com/minikube/releases/latest/minikube_1.3.1.deb"
+        url: "https://storage.googleapis.com/minikube/releases/latest/minikube_{{ minikube.latest }}.deb"
         dest: "{{ ansible_user_dir }}/minikube.deb"
     - name: minikube> Install package
       apt:
