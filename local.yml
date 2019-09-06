@@ -10,7 +10,8 @@
   vars:
     hostname: "dell-xps-13"
     user: "nicola"
-    minikube.latest: "1.3.1"
+    minikube.version: "1.3.1"
+    psql.version: "11"
   tasks:
     - include: tasks/users.yml
     - include: tasks/repositories.yml
@@ -19,4 +20,4 @@
     - include: tasks/applications.yml
     - include: tasks/development.yml
     - include: tasks/virtualization.yml
-    - include: tasks/postgresql.yml
+    - include: tasks/database.yml

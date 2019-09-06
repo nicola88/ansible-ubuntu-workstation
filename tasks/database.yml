@@ -1,0 +1,15 @@
+- name: Install PostgreSQL
+  - name: PostgreSQL> Add APT key
+    apt_key:
+      url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+      state: present
+  - name: PostgreSQL> Add APT repository
+    apt_repository:
+      repo: deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main
+      state: present
+      filename: pgdg
+  - name: PostgreSQL> Update repositories
+    apt: update_cache=yes
+  - name: PostgreSQL> Install PostgreSQL client
+    apt:
+      name: "postgresql-client-{{ psql.version }}"
