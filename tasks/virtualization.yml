@@ -3,7 +3,7 @@
   block:
   - name: Add VirtualBox APT repository
     apt_repository:
-      repo: "deb https://download.virtualbox.org/virtualbox/debian {{ distribution }} contrib"
+      repo: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
       state: present
       filename: virtualbox
   
@@ -44,7 +44,7 @@
 
     - name: Add Docker APT repository
       apt_repository:
-          repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ distribution }} stable"
+          repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
           state: present
 
     - name: Update APT repositories
