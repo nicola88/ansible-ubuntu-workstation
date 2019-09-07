@@ -127,8 +127,11 @@
         repo: deb https://mega.nz/linux/MEGAsync/xUbuntu_18.04/ ./
         state: present
         filename: 'megasync'
-    - name: MEGAsync> Install
+    - name: MEGAsync> Install desktop client and Nautilus integration
       apt: 
-        name: megasync
-        state: present
+        name: "{{ packages }}"
         update_cache: yes
+      vars:
+        packages:
+        - megasync
+        - nautilus-megasync
