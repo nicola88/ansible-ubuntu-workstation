@@ -80,3 +80,9 @@
   snap:
     name: pycharm-community
     classic: yes
+
+- name: Install Postman
+  tags: [development]
+  snap:
+    name: postman
+    classic: yes
