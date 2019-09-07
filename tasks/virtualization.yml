@@ -7,7 +7,7 @@
       state: present
   - name: VirtualBox 6> Add APT repository
     apt_repository:
-      repo: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+      repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
       state: present
       filename: virtualbox
   - name: VirtualBox 6> Update repositories
