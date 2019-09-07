@@ -1,4 +1,6 @@
 - name: Install PostgreSQL
+  tags: database
+  block:
   - name: PostgreSQL> Add APT key
     apt_key:
       url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
