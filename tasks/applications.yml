@@ -28,6 +28,33 @@
     - chromium-browser-l10n
     - chromium-codecs-ffmpeg-extra
 
+- name: Install Google Chrome
+  tags: browser
+  block:
+  - name: Google Chrome> Add APT key
+    apt_key:
+      url: https://dl.google.com/linux/linux_signing_key.pub
+      state: present
+  - name: Google Chrome> Add APT repository
+    apt_repository:
+      repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+      state: present
+      filename: 'google-chrome'
+  - name: Google Chrome> Install
+    apt: 
+      name: google-chrome-stable
+      state: present 
+      update_cache: yes
+
+- name: Install Thunderbird
+  tags: browser
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - thunderbird
+    - thunderbird-gnome-support
+
 - name: Install Skype
   tags: chat
   snap:
@@ -87,3 +114,21 @@
   tags: [security, password]
   snap:
     name: bitwarden
+
+- name: Install MEGAsync client
+  tags: [backup]
+  block:
+    - name: MEGAsync> Add APT key
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 8F208FBF12FEE766AA32AEAF03C3AD3A7F068E5D
+    - name: MEGAsync> Add APT repository
+      apt_repository:
+        repo: deb https://mega.nz/linux/MEGAsync/xUbuntu_18.04/ ./
+        state: present
+        filename: 'megasync'
+    - name: MEGAsync> Install
+      apt: 
+        name: megasync
+        state: present
+        update_cache: yes
