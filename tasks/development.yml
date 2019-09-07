@@ -30,11 +30,10 @@
       repo: deb https://dl.bintray.com/sbt/debian /
       state: present
       filename: sbt
-  - name: sbt> Update repositories
-    apt: update_cache=yes
   - name: sbt> Install
     apt:
       name: sbt
+      update_cache: yes
 
 - name: Install Meld
   tags: development
@@ -65,11 +64,10 @@
       repo: deb https://dbeaver.io/debs/dbeaver-ce /
       state: present
       filename: dbeaver
-  - name: DBeaver> Update repositories
-    apt: update_cache=yes
   - name: DBeaver> Install
     apt:
       name: dbeaver-ce
+      update_cache: yes
 
 - name: Install IntelliJ IDEA CE
   tags: [development, editor, java, scala]

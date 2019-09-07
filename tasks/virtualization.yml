@@ -10,13 +10,11 @@
     apt_repository:
       repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
       state: present
-      filename: virtualbox
-  - name: VirtualBox 6> Update repositories
-    apt:
-      update_cache: yes
+      filename: virtualbox   
   - name: Virtualbox 6> Install
     apt:
       name: "virtualbox-6.0"
+      update_cache: yes
 
 
 # https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-18-04
@@ -44,12 +42,10 @@
           repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
           state: present
           filename: docker
-    - name: Docker> Update repositories
-      apt: 
-        update_cache: yes
     - name: Docker> Install
       apt:
           name: "{{ packages }}"
+          update_cache: yes
       vars:
           packages:
           - docker-ce

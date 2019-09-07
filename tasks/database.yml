@@ -11,8 +11,7 @@
       repo: deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main
       state: present
       filename: pgdg
-  - name: PostgreSQL> Update repositories
-    apt: update_cache=yes
   - name: PostgreSQL> Install PostgreSQL client
     apt:
       name: "postgresql-client-{{ psql_version }}"
+      update_cache: yes
