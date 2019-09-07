@@ -11,7 +11,7 @@
       apt_repository:
         repo: deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ {{ ansible_distribution_release }} main
         state: present
-        filename: brave-browser-apt-release
+        filename: brave-browser-release
     - name: Brave> Update repositories
       apt: update_cache=yes
     - name: Brave> Install
@@ -34,6 +34,7 @@
   - name: Google Chrome> Add APT key
     apt_key:
       url: https://dl.google.com/linux/linux_signing_key.pub
+      keyring: /etc/apt/trusted.gpg.d/google-chrome.gpg
       state: present
   - name: Google Chrome> Add APT repository
     apt_repository:
@@ -122,6 +123,7 @@
       apt_key:
         keyserver: keyserver.ubuntu.com
         id: 8F208FBF12FEE766AA32AEAF03C3AD3A7F068E5D
+        keyring: /etc/apt/trusted.gpg.d/megasync.gpg
     - name: MEGAsync> Add APT repository
       apt_repository:
         repo: deb https://mega.nz/linux/MEGAsync/xUbuntu_18.04/ ./

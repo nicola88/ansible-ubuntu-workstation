@@ -23,6 +23,7 @@
     apt_key:
       keyserver: hkp://keyserver.ubuntu.com:80
       id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+      keyring: /etc/apt/trusted.gpg.d/sbt.gpg
       state: present
   - name: sbt> Add APT repository
     apt_repository:
@@ -57,6 +58,7 @@
   - name: DBeaver> Add APT key
     apt_key:
       url: https://dbeaver.io/debs/dbeaver.gpg.key
+      keyring: /etc/apt/trusted.gpg.d/dbeaver.gpg
       state: present
   - name: DBeaver> Add APT repository
     apt_repository:

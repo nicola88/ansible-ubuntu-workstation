@@ -4,6 +4,7 @@
   - name: VirtualBox 6> Add APT key
     apt_key:
       url: "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+      keyring: /etc/apt/trusted.gpg.d/virtualbox.gpg
       state: present
   - name: VirtualBox 6> Add APT repository
     apt_repository:
@@ -36,6 +37,7 @@
     - name: Docker> Add APT key
       apt_key:
           url: https://download.docker.com/linux/ubuntu/gpg
+          keyring: /etc/apt/trusted.gpg.d/docker.gpg
           state: present
     - name: Docker> Add APT repository
       apt_repository:

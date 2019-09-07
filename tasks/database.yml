@@ -4,6 +4,7 @@
   - name: PostgreSQL> Add APT key
     apt_key:
       url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+      keyring: /etc/apt/trusted.gpg.d/pgdg.gpg
       state: present
   - name: PostgreSQL> Add APT repository
     apt_repository:
