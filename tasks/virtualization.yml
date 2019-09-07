@@ -74,7 +74,7 @@
       failed_when: "virt.stdout == 'no'"
     - name: minikube> Download package
       get_url:
-        url: "https://storage.googleapis.com/minikube/releases/latest/minikube_{{ minikube.version }}.deb"
+        url: "https://storage.googleapis.com/minikube/releases/latest/minikube_{{ minikube_version }}.deb"
         dest: "{{ ansible_user_dir }}/minikube.deb"
     - name: minikube> Install package
       apt:
