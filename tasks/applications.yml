@@ -81,6 +81,11 @@
   apt:
     name: "fbreader"
 
+- name: Install Foliate
+  tags: productivity
+  snap:
+    name: foliate
+
 - name: Install LibreOffice Base & extras
   tags: productivity
   apt:
