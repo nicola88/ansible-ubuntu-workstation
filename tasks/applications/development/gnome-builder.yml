@@ -1,0 +1,4 @@
+- name: Install GNOME Builder
+  tags: [development, editor, gnome]
+  apt:
+    name: gnome-builder

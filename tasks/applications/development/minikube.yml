@@ -1,0 +1,23 @@
+# https://minikube.sigs.k8s.io/docs/start/linux/
+- name: Install minikube
+  tags: [virtualization]
+  block:
+    - name: minikube> Check virtualization support
+      shell: "egrep -q 'vmx|svm' /proc/cpuinfo && echo yes || echo no"
+      register: "virt"
+      failed_when: "virt.stdout == 'no'"
+    - name: minikube> Download package
+      get_url:
+        url: "https://storage.googleapis.com/minikube/releases/latest/minikube_{{ minikube_version }}.deb"
+        dest: "{{ ansible_user_dir }}/minikube.deb"
+    - name: minikube> Install package
+      apt:
+        deb: "{{ ansible_user_dir }}/minikube.deb"
+  rescue:
+    - debug:
+        msg: "minikube installation failed since virtualization support is not available or enabled"
+  always:
+    - name: minikube> Delete package file
+      file:
+        state: absent
+        path: "{{ ansible_user_dir }}/minikube.deb"

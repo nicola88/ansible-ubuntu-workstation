@@ -1,5 +1,5 @@
 - name: Install PostgreSQL
-  tags: database
+  tags: [development, database]
   block:
   - name: PostgreSQL> Add APT key
     apt_key:

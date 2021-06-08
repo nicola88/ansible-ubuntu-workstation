@@ -1,0 +1,17 @@
+- name: Install DBeaver CE
+  tags: [database, development, editor]
+  block:
+  - name: DBeaver> Add APT key
+    apt_key:
+      url: https://dbeaver.io/debs/dbeaver.gpg.key
+      keyring: /etc/apt/trusted.gpg.d/dbeaver.gpg
+      state: present
+  - name: DBeaver> Add APT repository
+    apt_repository:
+      repo: deb https://dbeaver.io/debs/dbeaver-ce /
+      state: present
+      filename: dbeaver
+  - name: DBeaver> Install
+    apt:
+      name: dbeaver-ce
+      update_cache: yes

@@ -1,0 +1,4 @@
+- name: Install Flameshot
+  tags: [system, screenshot]
+  apt:
+    name: flameshot

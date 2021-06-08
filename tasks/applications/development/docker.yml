@@ -1,0 +1,46 @@
+# https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-18-04
+- name: Install Docker
+  tags: virtualization
+  block:
+    - name: Docker> Install requirements
+      apt:
+          name: "{{ packages }}"
+      vars:
+          packages:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+          - python-pip
+    - name: Docker> Add APT key
+      apt_key:
+          url: https://download.docker.com/linux/ubuntu/gpg
+          keyring: /etc/apt/trusted.gpg.d/docker.gpg
+          state: present
+    - name: Docker> Add APT repository
+      apt_repository:
+          repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+          state: present
+          filename: docker
+    - name: Docker> Install
+      apt:
+          name: "{{ packages }}"
+          update_cache: yes
+      vars:
+          packages:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+    - name: Docker> Create group 'docker'
+      group:
+          name: docker
+          state: present
+    - name: Docker> Add user to group 'docker'
+      user:
+          name: "{{ user }}"
+          groups: docker
+          append: yes
+
+
+# TODO Install Docker Compose

@@ -1,0 +1,4 @@
+- name: Install Meld
+  tags: development
+  apt:
+    name: meld

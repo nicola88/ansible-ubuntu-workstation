@@ -1,0 +1,7 @@
+- name: Install OpenJDK 11
+  tags: [development, java, scala]
+  apt:
+    name: openjdk-11-jdk
+
+# TODO Set default Java using a variable (8, 11)
+# https://docs.ansible.com/ansible/latest/modules/alternatives_module.html

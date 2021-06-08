@@ -1,0 +1,5 @@
+- name: Install Skype
+  tags: chat
+  snap:
+    name: skype
+    classic: yes

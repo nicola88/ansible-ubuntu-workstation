@@ -1,0 +1,5 @@
+- name: Install Visual Studio Code
+  tags: [development, editor]
+  snap:
+    name: code
+    classic: yes

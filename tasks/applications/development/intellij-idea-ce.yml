@@ -1,0 +1,5 @@
+- name: Install IntelliJ IDEA CE
+  tags: [development, editor, java, scala]
+  snap:
+    name: intellij-idea-community
+    classic: yes

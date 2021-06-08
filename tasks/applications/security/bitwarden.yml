@@ -1,0 +1,4 @@
+- name: Install BitWarden
+  tags: [security, password manager]
+  snap:
+    name: bitwarden

@@ -1,0 +1,21 @@
+- name: Install MEGAsync client
+  tags: [backup]
+  block:
+    - name: MEGAsync> Add APT key
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 8F208FBF12FEE766AA32AEAF03C3AD3A7F068E5D
+        keyring: /etc/apt/trusted.gpg.d/megasync.gpg
+    - name: MEGAsync> Add APT repository
+      apt_repository:
+        repo: deb https://mega.nz/linux/MEGAsync/xUbuntu_18.04/ ./
+        state: present
+        filename: 'megasync'
+    - name: MEGAsync> Install desktop client and Nautilus integration
+      apt: 
+        name: "{{ packages }}"
+        update_cache: yes
+      vars:
+        packages:
+        - megasync
+        - nautilus-megasync

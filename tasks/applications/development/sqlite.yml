@@ -1,0 +1,5 @@
+- name: Install SQLite
+  tags: database
+  apt:
+    name: "sqlite"
+    update_cache: yes

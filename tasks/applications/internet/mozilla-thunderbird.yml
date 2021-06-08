@@ -1,0 +1,8 @@
+- name: Install Thunderbird
+  tags: browser
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - thunderbird
+    - thunderbird-gnome-support

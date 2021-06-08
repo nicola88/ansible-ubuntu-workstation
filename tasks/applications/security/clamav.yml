@@ -1,0 +1,11 @@
+- name: Install ClamAV
+  tags: [security, antivirus]
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - clamav
+    - clamav-daemon
+    - clamav-docs
+    - clamtk
+    - clamtk-gnome

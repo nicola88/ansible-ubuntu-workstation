@@ -1,0 +1,9 @@
+- name: Install Chromium
+  tags: browser
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - chromium-browser
+    - chromium-browser-l10n
+    - chromium-codecs-ffmpeg-extra
